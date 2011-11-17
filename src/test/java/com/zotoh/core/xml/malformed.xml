@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aa:xsi-defns xmlns:aa="http://www.cherimoia.com/20060101/xsi/v1/"
+    aa:uri="com/cherimoia/core/xsi/samples/">
+
+    <aa:enum aa:id="E1" aa:enumvalues="|average|tall|short|" />
+    <aa:enum aa:id="E2" aa:enumvalues="|man|woman|" />
+    
+    <aa:snippet aa:id="PersonTraits">
+       <aa:fld aa:id="height" aa:pname="Heightwise" aa:type="E1" aa:default="average"/>
+       <aa:fld aa:id="looks" aa:pname="Attractive" aa:type="boolean" aa:default="true"/>
+    </aa:snippet>
+
+    <aa:defn aa:id="Person" aa:extent="TBL_PERSON" aa:tags="abstract" aa:attributes="PersonTraits">
+        <aa:fld aa:id="fname" aa:pname="First Name"  aa:type="string" aa:tags="required"/>
+        <aa:fld aa:id="lname" aa:pname="Last Name" aa:type="string" aa:tags="required"/>
+        <aa:fld aa:id="age" aa:pname="Age" aa:type="int" aa:tags="required"/>
+        <aa:fld aa:id="bday" aa:pname="Date of Birth"  aa:type="long" aa:tags="required"/>
+        <aa:fld aa:id="lastmod" aa:pname="Last Modified" aa:type="timestamp"/>
+        <aa:fld aa:id="sex" aa:pname="Sex"  aa:type="E2"  aa:default="man"/>
+        <aa:key aa:value="fname,lname"/>
+        <aa:unique aa:value="fname,lname" aa:tags="index"/>
+    </aa:defn>
+
+    <aa:defn aa:id="Employee" aa:super="Person" aa:extent="TBL_EMPLOYEE"  aa:tags="context">
+        <aa:fld aa:id="empId" aa:pname="Employee Id" aa:type="string" aa:tags="req"/>
+        <aa:fld aa:id="hid" aa:type="string" aa:tags="fkey"/>
+        <aa:fld aa:id="salary" aa:pname="Salary"  aa:type="double"/>
+        <aa:fld aa:id="weight" aa:pname="Weight"  aa:type="float"/>
+        <aa:fld aa:id="married" aa:pname="Married" aa:type="boolean"/>
+        <aa:fld aa:id="picture" aa:pname="Self Picture"  aa:type="blob"/>
+        <aa:fld aa:id="dom" aa:pname="Date of Marriage"  aa:type="datetime"/>
+        <aa:fld aa:id="shortdesc" aa:pname="Short Description"  aa:type="bigstring"/>
+        <aa:fld aa:id="pwd" aa:pname="Password"  aa:type="password"/>
+        <aa:key aa:value="empId"/>
+        <aa:unique aa:value="pwd"/>
+        <aa:index aa:value="bday"/>
+        <aa:index aa:value="fname,lname,bday"/>        
+        <aa:assoc aa:id="link_house" aa:rhs="House" aa:type="o2o(x)" aa:map="hid, houseId"/>
+        <aa:assoc aa:id="link_car" aa:rhs="Car" aa:type="o2m(x)" aa:map="empId, rego"/>        
+    </aa:defn>
+
+    <aa:defn aa:id="House"  aa:extent="TBL_HOUSE" >
+        <aa:fld aa:id="houseId" aa:pname="House Id" aa:type="string" aa:tags="req"/>
+        <aa:fld aa:id="addr" aa:type="string" aa:tags="fkey"/>
+        <aa:key aa:value="houseId"/>
+    </aa:defn>
+
+    <aa:defn aa:id="Furniture"  aa:extent="TBL_FURNITURE" >
+        <aa:fld aa:id="modelNo" aa:pname="Model Number" aa:type="long" aa:tags="req"/>
+        <aa:fld aa:id="desc" aa:pname="Description" aa:type="string"/>
+        <aa:key aa:value="modelNo"/>
+    </aa:defn>
+
+    <aa:defn aa:id="Address"  aa:extent="TBL_ADDRESS" >
+        <aa:fld aa:id="addr1" aa:pname="Address" aa:type="string" aa:tags="req"/>
+        <aa:fld aa:id="desc" aa:pname="Description" aa:type="string"/>
+        <aa:key aa:value="addr1"/>
+    </aa:defn>
+
+    <aa:defn aa:id="Car"  aa:extent="TBL_CAR" >
+        <aa:fld aa:id="rego" aa:pname="Registration" aa:type="string" aa:tags="req"/>
+        <aa:fld aa:id="desc" aa:pname="Description" aa:type="string"/>
+        <aa:key aa:value="rego"/>
+    </defn>
+
+    <aa:defn aa:id="Part"  aa:extent="TBL_PART" >
+        <aa:fld aa:id="partNo" aa:pname="Part Number" aa:type="integer" aa:tags="req"/>
+        <aa:fld aa:id="desc" aa:pname="Description" aa:type="string"/>
+        <aa:key aa:value="partNo"/>
+    </aa:defn>
+        
+    <aa:assoc aa:lhs="House" aa:id="link_addr" aa:rhs="Address" aa:type="o2o(x)" aa:map="addr, addr1"/>
+    <aa:assoc aa:lhs="House" aa:id="link_furniture" aa:rhs="Furniture" aa:type="o2m(x)" aa:map="houseId, modelNo"/>
+    <aa:assoc aa:lhs="Car" aa:id="link_part" aa:rhs="Part" aa:type="o2m(x)" aa:map="rego, partNo"/>
+    
+</aa:xsi-defns>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aa:XSIGroup xmlns:aa="http://www.cherimoia.com/20060101/xsi/v1/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    aa:uri="com/cherimoia/core/xml/"
+    aa:vname="Default"
+    xsi:schemaLocation="XSI.xsd">
+
+	<aa:XSI aa:vname="UserDefinedType"/>
+
+	<aa:XSI aa:vname="Primitive" aa:jcz="java.lang.Object"/>
+
+	<aa:XSI aa:vname="Collection" aa:extends="com/cherimoia/core/xml/Primitive"/>
+	<aa:XSI aa:vname="DateTime" aa:jcz="java.util.Date" aa:extends="com/cherimoia/core/xml/Primitive"/>
+	<aa:XSI aa:vname="Boolean" aa:jcz="java.lang.Boolean" aa:extends="com/cherimoia/core/xml/Primitive"/>
+	<aa:XSI aa:vname="Blob" aa:jcz="[B" aa:extends="com/cherimoia/core/xml/Primitive"/>
+
+	<aa:XSI aa:vname="Number" aa:extends="com/cherimoia/core/xml/Primitive"/>
+
+	<aa:XSI aa:vname="Integer" aa:jcz="java.lang.Integer" aa:extends="com/cherimoia/core/xml/Number"/>
+	<aa:XSI aa:vname="Int" aa:jcz="java.lang.Integer" aa:extends="com/cherimoia/core/xml/Number"/>
+	<aa:XSI aa:vname="Long" aa:jcz="java.lang.Long" aa:extends="com/cherimoia/core/xml/Number"/>
+
+	<aa:XSI aa:vname="Real" aa:extends="com/cherimoia/core/xml/Primitive">
+		<aa:Property aa:vname="precision" aa:type="int"/>
+		<aa:Property aa:vname="scale" aa:type="int"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="String" aa:jcz="java.lang.String" aa:extends="com/cherimoia/core/xml/Primitive">
+		<aa:Property aa:vname="obfuscated" aa:type="boolean" aa:default="false"/>
+		<aa:Property aa:vname="width" aa:type="int" aa:default="255"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="Double" aa:jcz="java.lang.Double" aa:extends="com/cherimoia/core/xml/Real"/>
+	<aa:XSI aa:vname="Float" aa:jcz="java.lang.Float" aa:extends="com/cherimoia/core/xml/Real"/>
+
+	<aa:XSI aa:vname="Relation" aa:extends="com/cherimoia/core/xml/Primitive">
+		<aa:Property aa:vname="foreignProperty" aa:type="string"/>
+		<aa:Property aa:vname="foreignType" aa:type="string"/>
+		<aa:Property aa:vname="localProperty" aa:type="string"/>
+		<aa:Property aa:vname="shared" aa:type="boolean"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="Enum" aa:jcz="java.lang.String" aa:extends="com/cherimoia/core/xml/Primitive">
+		<aa:Property aa:vname="values" aa:type="string"/>
+		<aa:Property aa:vname="default" aa:type="string"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="List" aa:jcz="java.util.List" aa:extends="com/cherimoia/core/xml/Collection"/>
+	<aa:XSI aa:vname="Map" aa:jcz="java.util.Map" aa:extends="com/cherimoia/core/xml/Collection">
+		<aa:Property aa:vname="key" aa:type="string"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="One2Many" aa:extends="com/cherimoia/core/xml/Relation">
+		<aa:Property aa:vname="foreignProperty" aa:default="ownerOid"/>
+		<aa:Property aa:vname="localProperty" aa:default="oid"/>
+		<aa:Property aa:vname="shared" aa:default="false"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="One2One" aa:extends="com/cherimoia/core/xml/Relation">
+		<aa:Property aa:vname="foreignProperty" aa:default="oid"/>
+		<aa:Property aa:vname="shared" aa:default="true"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="Timestamp" aa:jcz="java.sql.Timestamp" aa:extends="com/cherimoia/core/xml/DateTime"/>
+
+	<aa:XSI aa:vname="Password" aa:extends="com/cherimoia/core/xml/String">
+		<aa:Property aa:vname="obfuscated" aa:type="boolean" aa:default="true"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="UserID" aa:extends="com/cherimoia/core/xml/String">
+		<aa:Property aa:vname="obfuscated" aa:type="boolean" aa:default="true"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="OID" aa:extends="com/cherimoia/core/xml/String">
+		<aa:Property aa:vname="width" aa:type="int" aa:default="128"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="BigString" aa:extends="com/cherimoia/core/xml/String">
+		<aa:Property aa:vname="width" aa:type="int" aa:default="2250"/>
+	</aa:XSI>
+
+	<aa:XSI aa:vname="URL" aa:extends="com/cherimoia/core/xml/BigString"/>
+
+</aa:XSIGroup>

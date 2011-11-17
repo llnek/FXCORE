@@ -1,0 +1,48 @@
+------------------------------------------------------------------------------
+General Purpose Java Utilities (fxcore).
+Copyright 2008-2011 Cherimoia,LLC. All Rights Reserved.
+------------------------------------------------------------------------------
+The following set of software modules/components are included
+( bundled as binaries/source code):
+
+- Crypto functions are provided by the BouncyCastle java library package, 
+  which is open source software.
+  @see http://bouncycastle.org
+  @see-license http://bouncycastle.org/licence.html
+
+- Logging functions are provided by the SLF4J library package,
+  which is open source software.
+  @see http://www.slf4j.org
+  @see-license http://www.slf4j.org/license.html
+
+- Logging functions are provided by the log4j library package,
+  which is open source software.
+  @see http://logging.apache.org/log4j
+  @see-license http://logging.apache.org/log4j/1.2/license.html
+
+- Network Socket functions are provided by the Netty library package,
+  which is open source software (apache-license).
+  @see http://www.jboss.org/netty
+  @see-license http://www.apache.org/licenses/LICENSE-2.0
+
+- Apache Commons.  Various commons.* packages are used.
+  @see http://commons.apache.org
+  @see-license http://www.apache.org/licenses/LICENSE-2.0
+
+- SUN Javamail.  Please see accompanied license file, which is located in the 
+  /lics folder of the distribution bundle.
+  @see http://www.oracle.com/technetwork/java/javamail/index-138643.html
+  @see-license javamail.LICENSE.txt
+
+- JSON java source from json.org.
+  @see http://www.json.org/java/index.html
+  @see-license *free source*
+
+- BCrypt source.  BCrypt implements OpenBSD-style Blowfish password hashing using
+  the scheme described in "A Future-Adaptable Password Scheme" by
+  Niels Provos and David Mazieres.
+  Please see accompanied license file, which is located in the /lics folder of the 
+  distribution bundle.
+  @see http://mindrot.org/projects/jBCrypt/
+  @see-license BCrypt.LICENSE.txt
+
